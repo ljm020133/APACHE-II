@@ -19,8 +19,8 @@ apache_scoring_project/ <br/>
 │ ├── ... <br/>
 │ └── updated_APACHE_data.csv # Final merged dataset <br/>
 ├── apache_scoring.py # Scoring functions (modular) <br/>
-├── preprocessing/ # Data cleaning scripts <br/>
-├── fileMerger.py # Merges physical/lab/patient data <br/>
+├── preprocessing/ # Data cleaning scripts **updating soon** <br/>  
+├── fileMerger.py # Merges physical/lab/patient data **updating soon**  <br/>
 └── README.md <br/>
 
 
