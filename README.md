@@ -10,7 +10,7 @@ APACHE (Acute Physiology And Chronic Health Evaluation) is a scoring system wide
 
 ## Project Structure
 
-apache_scoring_project/ 
+apache_scoring_project/ <br/>
 ├── data/ <br/>
 │ ├── physicalExam.csv <br/>
 │ ├── lab.csv <br/>
