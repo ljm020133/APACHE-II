@@ -10,7 +10,18 @@ APACHE (Acute Physiology And Chronic Health Evaluation) is a scoring system wide
 
 ## Project Structure
 
-apache_scoring_project/ ├── data/ │ ├── physicalExam.csv │ ├── lab.csv │ ├── patient.csv │ ├── diagnosis.csv │ ├── ... │ └── updated_APACHE_data.csv # Final merged dataset ├── apache_scoring.py # Scoring functions (modular) ├── preprocessing/ # Data cleaning scripts ├── fileMerger.py # Merges physical/lab/patient data └── README.md
+apache_scoring_project/ 
+├── data/ <br/>
+│ ├── physicalExam.csv <br/>
+│ ├── lab.csv <br/>
+│ ├── patient.csv <br/>
+│ ├── diagnosis.csv <br/>
+│ ├── ... <br/>
+│ └── updated_APACHE_data.csv # Final merged dataset <br/>
+├── apache_scoring.py # Scoring functions (modular) <br/>
+├── preprocessing/ # Data cleaning scripts <br/>
+├── fileMerger.py # Merges physical/lab/patient data <br/>
+└── README.md <br/>
 
 
 ---
