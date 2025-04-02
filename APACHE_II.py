@@ -2,7 +2,7 @@ import pandas as pd
 import os
 
 # === File Paths ===
-base_dir = r"C:\Users\gigm2\OneDrive - Iowa State University\Desktop\work\data\APACH II\APACHE 2, 4, 4a\data"
+base_dir = r"C:\path\to\your\data""
 input_file = os.path.join(base_dir, "updated_APACHE_data.csv")
 output_file = os.path.join(base_dir, "updated_APACHE_data.csv")
 
