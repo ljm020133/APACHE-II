@@ -275,37 +275,6 @@ df["gcs_total"] = df["gcs_total"].clip(lower=3, upper=15)
 # Now subtract from 15
 df["apache_gcs_score"] = 15 - df["gcs_total"]
 
-# === List of APACHE II score component columns you've calculated ===
-apache_score_columns = [
-    "apache_temp_score",
-    "apache_map_score",
-    "apache_hr_score",
-    "apache_rr_score",
-    "apache_oxygenation_score",
-    "apache_ph_score",
-    "apache_sodium_score",      
-    "apache_potassium_score",    # skip if not yet added
-    "apache_creatinine_score",
-    "apache_hematocrit_score",
-    "apache_wbc_score",
-    "apache_gcs_score",
-    "apache_glucose_score",
-    "apache_bun_score"
-]
-
-# === Filter out score columns that aren't in your dataset
-apache_score_columns = [col for col in apache_score_columns if col in df.columns]
-
-# === Total APACHE II score
-df["apache2_score_total"] = df[apache_score_columns].sum(axis=1, skipna=True)
-
-# === Count how many score components are present
-df["apache2_score_components_count"] = df[apache_score_columns].notna().sum(axis=1)
-
-# === Calculate % completeness (accuracy)
-df["apache2_score_accuracy"] = df["apache2_score_components_count"] / len(apache_score_columns)
-
-
 # === Apply Scoring ===
 df["apache_hr_score"] = df["heartrate"].apply(apache_heart_rate_score)
 df["apache_map_score"] = df["meanbp"].apply(apache_map_score)
@@ -321,10 +290,41 @@ df["apache_hematocrit_score"] = df["hematocrit"].apply(apache_hematocrit_score)
 df["apache_ph_score"] = df["ph"].apply(apache_ph_score)
 df["apache_albumin_score"] = df["albumin"].apply(apache_albumin_score)
 df["apache_bilirubin_score"] = df["bilirubin"].apply(apache_bilirubin_score)
-
-# potassium score but current dataset does not have potassium
 df["apache_potassium_score"] = df["potassium"].apply(apache_potassium_score)
 
+# === List of APACHE II score component columns you've calculated ===
+apache_score_columns = [
+    "apache_temp_score",
+    "apache_map_score",
+    "apache_hr_score",
+    "apache_rr_score",
+    "apache_oxygenation_score",
+    "apache_ph_score",
+    "apache_sodium_score",      
+    "apache_potassium_score",    # skip if not yet added
+    "apache_creatinine_score",
+    "apache_hematocrit_score",
+    "apache_wbc_score",
+    "apache_gcs_score"# ,
+    # "apache_glucose_score",     # extra for the APACHE II score
+    # "apache_bun_score"          # extra for the APACHE II score
+]
+
+
+# === Count how many score components are present
+df["apache2_score_components_count"] = df[apache_score_columns].notna().sum(axis=1)
+
+# === Total APACHE II score
+df["apache2_score_total"] = df[apache_score_columns].sum(axis=1)
+
+# === Total APACHE II score
+# df["apache2_score_total"] = df[apache_score_columns].sum(axis=1, skipna=True)
+
+# === Calculate % completeness (accuracy)
+df["apache2_score_accuracy"] = df["apache2_score_components_count"] / len(apache_score_columns)
+
+# === Filter out score columns that aren't in your dataset
+apache_score_columns = [col for col in apache_score_columns if col in df.columns]
 
 # === Save Updated Dataset ===
 df.to_csv(output_file, index=False)
